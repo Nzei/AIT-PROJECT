@@ -19,6 +19,7 @@ public class CustomerService {
 
     public Customer saveCustomer(Customer customer) {
         customer.setCustomerCode(generateID(customer));
+        //swwsd
         return customerRepository.save(customer);
     }
 
