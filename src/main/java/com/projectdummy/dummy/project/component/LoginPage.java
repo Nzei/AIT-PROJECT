@@ -22,7 +22,7 @@ import java.util.List;
  * @author uchen
  */
 @Component
-public class LoginPage extends JFrame {
+public class LoginPage extends javax.swing.JFrame {
 
     Customer foundCustomer;
     SecugenScanner scanner;
@@ -35,9 +35,8 @@ public class LoginPage extends JFrame {
 
     @Autowired
     Dashboard dashboard;
-
     /**
-     * Creates new form Login_page
+     * Creates new form Login
      */
     public LoginPage() {
         initComponents();
@@ -53,76 +52,74 @@ public class LoginPage extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        fingerDisplayPanel = new JPanel();
+        WelcomeHeader = new javax.swing.JLabel();
+        submitButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        customerCodeTextField = new javax.swing.JTextPane();
+        CustomerCodeHeader = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel1.setText("                 LOGIN");
+        WelcomeHeader.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        WelcomeHeader.setText("Welcome");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("   Please enter your userID and click on continue...");
-
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Continue");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        submitButton.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        submitButton.setText("Continue");
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ContinueButton(evt);
+                submitButtonActionPerformed(evt);
             }
         });
 
-        jTextField1.setToolTipText("UserID");
-        jTextField1.setToolTipText("");
+        customerCodeTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                customerCodeTextFieldKeyTyped(evt);
+            }
+        });
+        jScrollPane1.setViewportView(customerCodeTextField);
 
-        fingerDisplayPanel.setEnabled(true);
-        fingerDisplayPanel.setBackground(new Color(0x999999));
+        CustomerCodeHeader.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        CustomerCodeHeader.setText("Customer code");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(68, 68, 68)
-                                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(88, 88, 88)
-                                                .addComponent(jLabel2))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(203, 203, 203)
-                                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(275, 275, 275)
-                                                .addComponent(jButton1))
-                                        .addComponent(fingerDisplayPanel)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addContainerGap(124, Short.MAX_VALUE))
-                                )));
+                                .addGap(129, 129, 129)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(CustomerCodeHeader)
+                                        .addComponent(WelcomeHeader))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(100, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(97, 97, 97))
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(140, 140, 140)
+                                .addComponent(submitButton)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(jLabel1)
-                                .addGap(41, 41, 41)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 276, Short.MAX_VALUE)
-                                .addComponent(jButton1)
-                                .addGap(60, 60, 60)
-                                .addComponent(fingerDisplayPanel)
-                                .addContainerGap())
+                                .addGap(21, 21, 21)
+                                .addComponent(WelcomeHeader)
+                                .addGap(27, 27, 27)
+                                .addComponent(CustomerCodeHeader)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                                .addComponent(submitButton)
+                                .addGap(42, 42, 42))
         );
 
         pack();
     }// </editor-fold>
+
+
     private void verifyPrints(){
-        JOptionPane.showMessageDialog( jTextField1, "Place finger on scanner and Scan fingerprints...");
+        JOptionPane.showMessageDialog( jScrollPane1, "Place finger on scanner and Scan fingerprints...");
 
         scanner.sleep(1);
         byte[] scannedPrint  = scanner.captureBytes();
@@ -131,8 +128,12 @@ public class LoginPage extends JFrame {
             if(scanner.match(scannedPrint, prints.get(i).getPrintObject())){
                 numberOfMatchedPrints++;
                 prints.remove(i);
+                JOptionPane.showMessageDialog(jScrollPane1, "Fingerprint matched");
                 System.out.println("Match Found: "+ numberOfMatchedPrints);
                 break;
+            }else{
+                JOptionPane.showMessageDialog(jScrollPane1,"Fingerprint matching failed");
+                System.out.println("Done here");
             }
         }
 
@@ -141,9 +142,6 @@ public class LoginPage extends JFrame {
             return;
         }
 
-        jLabel2.setText("Fingerprint matching failed");
-        System.out.println("Done here");
-
     }
 
     private void resetPrintsCounts(){
@@ -151,19 +149,25 @@ public class LoginPage extends JFrame {
         prints = new ArrayList<>();
     }
 
-    private void ContinueButton(java.awt.event.ActionEvent evt) {
-       resetPrintsCounts();
-        foundCustomer = customerService.searchCustomerByCode(jTextField1.getText());
-        if(foundCustomer == null){
-            jLabel2.setText("Customer not found!!!");
-            return;
+
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+            resetPrintsCounts();
+            foundCustomer = customerService.searchCustomerByCode(customerCodeTextField.getText());
+            if(foundCustomer == null){
+                JOptionPane.showMessageDialog(jScrollPane1, "Customer not found");
+                return;
+            }
+
+            prints = foundCustomer.getFingerprints();
+
+            for(int i=0; i<numberOfPrintsToValidate ; i++){
+                verifyPrints();
+            }
         }
 
-        prints = foundCustomer.getFingerprints();
-
-        for(int i=0; i<numberOfPrintsToValidate ; i++){
-            verifyPrints();
-        }
+    private void customerCodeTextFieldKeyTyped(java.awt.event.KeyEvent evt) {
+        // TODO add your handling code here:
     }
 
     /**
@@ -175,42 +179,40 @@ public class LoginPage extends JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
         //</editor-fold>
-
-
-//        fingerDisplayPanel.add(fingerDisplayPanel);
-//        fingerDisplayPanel.revalidate();
-//        fingerDisplayPanel.repaint();
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                new LoginPage().setVisible(true);
+//                new Login().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel CustomerCodeHeader;
+    private javax.swing.JLabel WelcomeHeader;
+    private javax.swing.JTextPane customerCodeTextField;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton submitButton;
     private javax.swing.JTextField jTextField1;
-    private static javax.swing.JPanel fingerDisplayPanel;
+    private javax.swing.JLabel jLabel2;
+
     // End of variables declaration
 }

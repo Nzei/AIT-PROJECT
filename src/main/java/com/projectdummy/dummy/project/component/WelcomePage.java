@@ -8,7 +8,6 @@ package com.projectdummy.dummy.project.component;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 /**
  *
  * @author uchen
@@ -16,19 +15,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class WelcomePage extends javax.swing.JFrame {
 
-    FrontEnd frontEnd;
+    /**
+     * Creates new form welcome_page
+     */
+
+    Registration registration;
     LoginPage loginPage;
 
-    /**
-     * Creates new form Options
-     */
     public WelcomePage() {
         initComponents();
     }
 
     @Autowired
-    public void initComponents(FrontEnd frontEnd, LoginPage loginPage){
-        this.frontEnd = frontEnd;
+    public void initComponents(Registration registration, LoginPage loginPage){
+        this.registration = registration;
         this.loginPage = loginPage;
     }
 
@@ -41,28 +41,34 @@ public class WelcomePage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        WelcomeHeader = new javax.swing.JLabel();
+        WelcomeSubHeader = new javax.swing.JLabel();
+        RegistrationButton = new javax.swing.JButton();
+        LoginButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton1.setText("Register");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        WelcomeHeader.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        WelcomeHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        WelcomeHeader.setText("WELCOME");
+
+        WelcomeSubHeader.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        WelcomeSubHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        WelcomeSubHeader.setText("What do you want to do ?");
+
+        RegistrationButton.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        RegistrationButton.setText("Registration");
+        RegistrationButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                RegistrationButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        jLabel1.setText("What do you want to do ?");
-
-        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton3.setText("Login");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        LoginButton.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        LoginButton.setText("Login");
+        LoginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                LoginButtonActionPerformed(evt);
             }
         });
 
@@ -71,36 +77,44 @@ public class WelcomePage extends javax.swing.JFrame {
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(jLabel1)
-                                .addContainerGap(49, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(84, 84, 84)
-                                .addComponent(jButton1)
+                                .addGap(64, 64, 64)
+                                .addComponent(RegistrationButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3)
-                                .addGap(85, 85, 85))
+                                .addComponent(LoginButton)
+                                .addGap(51, 51, 51))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(74, Short.MAX_VALUE)
+                                .addComponent(WelcomeSubHeader)
+                                .addGap(60, 60, 60))
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(111, 111, 111)
+                                .addComponent(WelcomeHeader)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(WelcomeHeader)
+                                .addGap(32, 32, 32)
+                                .addComponent(WelcomeSubHeader)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jButton1)
-                                        .addComponent(jButton3))
-                                .addGap(46, 46, 46))
+                                        .addComponent(RegistrationButton)
+                                        .addComponent(LoginButton))
+                                .addGap(45, 45, 45))
         );
 
         pack();
     }// </editor-fold>
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-        this.frontEnd.setVisible(true);
+    private void RegistrationButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        this.registration.setVisible(true);
     }
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
         this.loginPage.setVisible(true);
     }
 
@@ -134,14 +148,15 @@ public class WelcomePage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                new WelcomePage().setVisible(true);
+//                new welcome_page().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton LoginButton;
+    private javax.swing.JButton RegistrationButton;
+    private javax.swing.JLabel WelcomeHeader;
+    private javax.swing.JLabel WelcomeSubHeader;
     // End of variables declaration
 }

@@ -5,12 +5,16 @@ import com.projectdummy.dummy.project.entity.Customer;
 import com.projectdummy.dummy.project.repository.ICustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.rmi.server.UID;
 import java.util.List;
 
 @Service
 public class CustomerService {
 
     private ICustomerRepository customerRepository;
+
+
 
     @Autowired
     public CustomerService(ICustomerRepository customerRepository) {
@@ -19,7 +23,7 @@ public class CustomerService {
 
     public Customer saveCustomer(Customer customer) {
         customer.setCustomerCode(generateID(customer));
-        //swwsd
+        customer.setBalance(5000);
         return customerRepository.save(customer);
     }
 
@@ -41,9 +45,14 @@ public class CustomerService {
             dbCust.setPhoneNumber(customer.getPhoneNumber());
             dbCust.setAddress(customer.getAddress());
             dbCust.setCustomerCode(customer.getCustomerCode());
-//            dbCust.setFingerprints(customer.getFingerprints());
             dbCust.setFirstName(customer.getFirstName());
             dbCust.setLastName(customer.getLastName());
+            dbCust.setBalance(customer.getBalance());
+            dbCust.setDob(customer.getDob());
+            dbCust.setEmail(customer.getEmail());
+            dbCust.setMothersMaidenName(customer.getMothersMaidenName());
+            dbCust.setGender(customer.getGender());
+            dbCust.setAccountNumber(customer.getAccountNumber());
         } else {
             System.out.println("Invalid entry");
         }
@@ -54,6 +63,7 @@ public class CustomerService {
         String UID = customer.getFirstName().substring(0, 1).toUpperCase() + customer.getLastName().substring(0, 1).toUpperCase() + System.currentTimeMillis();
         return UID;
     }
+
 
     public void matchingOfPrints(String UID){
         Customer searchedCustomer = searchCustomerByCode(UID);

@@ -1,20 +1,36 @@
 package com.projectdummy.dummy.project.component;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import com.projectdummy.dummy.project.entity.Customer;
+import com.projectdummy.dummy.project.repository.ICustomerRepository;
+import com.projectdummy.dummy.project.service.CustomerService;
+import org.apache.catalina.util.CustomObjectInputStream;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
  * @author uchen
  */
 @Component
-public class Dashboard extends JFrame {
+public class Dashboard extends javax.swing.JFrame {
+
+    @Autowired
+    private Customer customer;
+
+    @Autowired
+    private CustomerService customerService;
+
+    @Autowired
+    private LoginPage loginPage;
 
     /**
      * Creates new form Dashboard
@@ -32,68 +48,91 @@ public class Dashboard extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        welcomeHeader = new javax.swing.JLabel();
+        depositCahsButton = new javax.swing.JButton();
+        checkBalance = new javax.swing.JButton();
+        withdrawButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel1.setText("Welcome");
+        welcomeHeader.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        welcomeHeader.setText("Welcome");
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton2.setText("Deposit Cash");
+        depositCahsButton.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        depositCahsButton.setText("Deposit Cash");
+        depositCahsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                depositCahsButtonActionPerformed(evt);
+            }
+        });
 
-        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton3.setText("Deposit Cheque");
+        checkBalance.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        checkBalance.setText("Check Balance");
+        checkBalance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBalanceActionPerformed(evt);
+            }
+        });
 
-        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton4.setText("Check Balance");
-
-        jButton7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton7.setText("Withdraw");
+        withdrawButton.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        withdrawButton.setText("Withdraw");
+        withdrawButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                withdrawButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(230, 230, 230)
-                                .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(30, 30, 30)
+                                .addComponent(withdrawButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
+                                .addComponent(depositCahsButton)
+                                .addGap(38, 38, 38))
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jButton4)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
-                                                .addComponent(jButton3))
+                                                .addGap(150, 150, 150)
+                                                .addComponent(checkBalance))
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jButton7)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jButton2)))
-                                .addGap(69, 69, 69))
+                                                .addGap(185, 185, 185)
+                                                .addComponent(welcomeHeader)))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addComponent(jLabel1)
-                                .addGap(49, 49, 49)
+                                .addGap(23, 23, 23)
+                                .addComponent(welcomeHeader)
+                                .addGap(57, 57, 57)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jButton2)
-                                        .addComponent(jButton7))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jButton3)
-                                        .addComponent(jButton4))
-                                .addGap(70, 70, 70))
+                                        .addComponent(depositCahsButton)
+                                        .addComponent(withdrawButton))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                                .addComponent(checkBalance)
+                                .addGap(42, 42, 42))
         );
 
         pack();
     }// </editor-fold>
+
+    private void withdrawButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+
+
+    }
+
+    private void depositCahsButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void checkBalanceActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(jTextField1, customer.getCustomerCode());
+    }
 
     /**
      * @param args the command line arguments
@@ -125,16 +164,17 @@ public class Dashboard extends JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                new Dashboard().setVisible(true);
+                new Dashboard().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton checkBalance;
+    private javax.swing.JButton depositCahsButton;
+    private javax.swing.JLabel welcomeHeader;
+    private javax.swing.JButton withdrawButton;
+    private javax.swing.JTextField jTextField1;
+
     // End of variables declaration
 }

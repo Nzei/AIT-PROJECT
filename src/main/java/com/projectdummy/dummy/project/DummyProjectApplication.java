@@ -1,8 +1,6 @@
 package com.projectdummy.dummy.project;
 
 import com.projectdummy.dummy.project.Scanner.SecugenScanner;
-import com.projectdummy.dummy.project.component.FrontEnd;
-import com.projectdummy.dummy.project.component.LoginPage;
 import com.projectdummy.dummy.project.component.WelcomePage;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
