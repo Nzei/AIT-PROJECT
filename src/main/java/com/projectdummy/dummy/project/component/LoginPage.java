@@ -131,14 +131,16 @@ public class LoginPage extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(jScrollPane1, "Fingerprint matched");
                 System.out.println("Match Found: "+ numberOfMatchedPrints);
                 break;
-            }else{
-                JOptionPane.showMessageDialog(jScrollPane1,"Fingerprint matching failed");
-                System.out.println("Done here");
             }
         }
+//        else{
+//            JOptionPane.showMessageDialog(jScrollPane1,"Fingerprint matching failed");
+//            System.out.println("Done here");
+//        }
 
-        if(numberOfMatchedPrints >= numberOfPrintsToValidate){
+        if(numberOfMatchedPrints == numberOfPrintsToValidate){
             dashboard.setVisible(true);
+            Customer activeAccount = foundCustomer;
             return;
         }
 

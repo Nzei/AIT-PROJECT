@@ -32,6 +32,9 @@ public class Dashboard extends javax.swing.JFrame {
     @Autowired
     private LoginPage loginPage;
 
+    @Autowired
+    private ICustomerRepository iCustomerRepository;
+
     /**
      * Creates new form Dashboard
      */
@@ -121,17 +124,29 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void withdrawButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-
-
+        String input = JOptionPane.showInputDialog("Enter how much you want to withdraw");
+        Long.parseLong(input);
+        long newBalance = loginPage.foundCustomer.getBalance();
+        newBalance-=Long.parseLong(input);
+        loginPage.foundCustomer.setBalance(newBalance);
+        iCustomerRepository.save(loginPage.foundCustomer);
+        JOptionPane.showInputDialog(jTextField1, "You have successfully withdrawn " + input + ", your new balance is " + loginPage.foundCustomer.getBalance());
     }
 
     private void depositCahsButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+         String input = JOptionPane.showInputDialog("Enter the amount to deposit");
+         Long.parseLong(input);
+         long newBalance = loginPage.foundCustomer.getBalance();
+         newBalance+=Long.parseLong(input);
+         loginPage.foundCustomer.setBalance(newBalance);
+         iCustomerRepository.save(loginPage.foundCustomer);
+         JOptionPane.showMessageDialog(jTextField1, "You have deposited " +  input + ", your new balance is " + loginPage.foundCustomer.getBalance());
     }
 
     private void checkBalanceActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(jTextField1, customer.getCustomerCode());
+        JOptionPane.showMessageDialog(jTextField1, "Your account balance is: $ " +loginPage.foundCustomer.getBalance());
     }
 
     /**
