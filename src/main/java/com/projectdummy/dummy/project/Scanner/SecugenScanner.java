@@ -8,7 +8,8 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.color.ColorSpace;
 import java.awt.image.*;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
@@ -72,7 +73,7 @@ public class SecugenScanner implements IScanner {
     }
 
     public BufferedImage toImage(byte[] data) {
-       return toImage(data, deviceInfo.imageWidth, deviceInfo.imageHeight );
+        return toImage(data, deviceInfo.imageWidth, deviceInfo.imageHeight);
     }
 
 
@@ -81,9 +82,8 @@ public class SecugenScanner implements IScanner {
         BufferedImage image = null;
         try {
             image = toImage(captureBytes(), deviceInfo.imageWidth, deviceInfo.imageHeight);
-            ImageIO.write(image, "jpg", new File(System.currentTimeMillis()+".jpg"));
+            ImageIO.write(image, "jpg", new File(System.currentTimeMillis() + ".jpg"));
 
-            // FileUtils.writeByteArrayToFile(new File("print.txt"), Base64.getEncoder().encode(imageBuffer1));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -240,17 +240,10 @@ public class SecugenScanner implements IScanner {
 
         sgfplib = null;
         err = 0L;
-//        imageBuffer1 = null;
-//        imageBuffer2 = null;
-//        SG400minutiaeBuffer1 = null;
-//        ANSIminutiaeBuffer1 = null;
-//        ISOminutiaeBuffer1 = null;
-//        SG400minutiaeBuffer2 = null;
-//        ANSIminutiaeBuffer2 = null;
-//        ISOminutiaeBuffer2 = null;
+
     }
 
-    public boolean match(byte[] image1, byte[] image2){
+    public boolean match(byte[] image1, byte[] image2) {
         ///////////////////////////////////////////////
         // Set Template format SG400
         System.out.println("Call SetTemplateFormat(SG400)");
@@ -278,34 +271,14 @@ public class SecugenScanner implements IScanner {
         score[0] = 0;
         err = sgfplib.GetMatchingScore(templatedImage1, templatedImage2, score);
 
-        System.out.println("Matching Error: "+err);
-        System.out.println("Matching score: "+score[0]);
+        System.out.println("Matching Error: " + err);
+        System.out.println("Matching score: " + score[0]);
 
-        if(score[0] > 120){
+        if (score[0] > 120) {
             return true;
         }
 
         return false;
     }
-
-
-
-//    public static void main(String[] args) {
-//        SecugenScanner secugenScanner = new SecugenScanner();
-//        secugenScanner.start();
-//        System.out.println("***** Get ready to scan print");
-//        secugenScanner.sleep(2);
-//        System.out.println("Scanning print");
-//        byte[] image1 = secugenScanner.captureBytes();
-//
-//        System.out.println("***** Get ready for second print");
-//        secugenScanner.sleep(2);
-//
-//        byte[] image2 =  secugenScanner.captureBytes();
-//
-//        System.out.println("Finger Matched? "+secugenScanner.match(image1, image2));
-//        secugenScanner.stop();
-//    }
-
 
 }

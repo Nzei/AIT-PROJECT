@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @XmlRootElement
@@ -32,7 +31,7 @@ public class Customer {
     private String phoneNumber;
     @Column
     private String address;
-    @Column (nullable = false)
+    @Column(nullable = false)
     private long balance;
     @Column
     private String gender;
@@ -45,7 +44,7 @@ public class Customer {
     @Column
     private String accountNumber;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Fingerprint> fingerprints = new ArrayList<>();
 
     public Customer() {
@@ -68,16 +67,14 @@ public class Customer {
     }
 
 
-    public void addFingerprint(byte[] print, String fingertype){
-       Fingerprint fingerprint =  new Fingerprint();
-       fingerprint.setPrintObject(print);
-       fingerprint.setFingerType(fingertype);
-
-       fingerprints.add(fingerprint);
+    public void addFingerprint(byte[] print, String fingertype) {
+        Fingerprint fingerprint = new Fingerprint();
+        fingerprint.setPrintObject(print);
+        fingerprint.setFingerType(fingertype);
+        fingerprints.add(fingerprint);
     }
 
     public void addFingerprint(byte[] print) {
         addFingerprint(print, null);
-
     }
 }

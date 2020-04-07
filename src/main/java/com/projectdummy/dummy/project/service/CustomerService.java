@@ -6,14 +6,12 @@ import com.projectdummy.dummy.project.repository.ICustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.rmi.server.UID;
 import java.util.List;
 
 @Service
 public class CustomerService {
 
     private ICustomerRepository customerRepository;
-
 
 
     @Autowired
@@ -65,21 +63,16 @@ public class CustomerService {
     }
 
 
-    public void matchingOfPrints(String UID){
+    public void matchingOfPrints(String UID) {
         Customer searchedCustomer = searchCustomerByCode(UID);
-        if(searchedCustomer!=null){
+        if (searchedCustomer != null) {
             searchedCustomer.getFingerprints();
-        }else{
-            System.out.println("No customer found with "+UID);
+        } else {
+            System.out.println("No customer found with " + UID);
         }
         SecugenScanner secugenScanner = new SecugenScanner();
         secugenScanner.start();
         byte[] image1 = secugenScanner.captureBytes();
-
         assert searchedCustomer != null;
-//        secugenScanner.match(searchedCustomer.getFingerprints(), image1);
-
-
-
     }
 }

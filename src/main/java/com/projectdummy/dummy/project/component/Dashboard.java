@@ -5,20 +5,18 @@ package com.projectdummy.dummy.project.component;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 import com.projectdummy.dummy.project.entity.Customer;
 import com.projectdummy.dummy.project.repository.ICustomerRepository;
 import com.projectdummy.dummy.project.service.CustomerService;
-import org.apache.catalina.util.CustomObjectInputStream;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import sun.jvm.hotspot.ui.classbrowser.ClassBrowserPanel;
+
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
- *
  * @author uchen
  */
 @Component
@@ -131,39 +129,37 @@ public class Dashboard extends javax.swing.JFrame {
         long balance = loginPage.foundCustomer.getBalance();
         if (entry >= balance || entry < 1) {
             JOptionPane.showMessageDialog(jTextField1, "You do not have sufficient money to complete transaction");
-        }
-        else {
+        } else {
             newBalance = balance - entry;
             loginPage.foundCustomer.setBalance(newBalance);
             iCustomerRepository.save(loginPage.foundCustomer);
-            JOptionPane.showInputDialog(jTextField1, "You have successfully withdrawn " + input + ", your new balance is " + loginPage.foundCustomer.getBalance());
+            JOptionPane.showMessageDialog(jTextField1, "You have successfully withdrawn " + input + ", your new balance is " + loginPage.foundCustomer.getBalance());
         }
 
     }
 
     private void depositCahsButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-         String input = JOptionPane.showInputDialog("Enter the amount to deposit");
-         long entry = Long.parseLong(input);
-         if (entry < 1){
-             JOptionPane.showMessageDialog(jTextField1, "Sorry you cannot deposit " + entry + " please enter a valid amount");
-         }
-         if (entry > 50000) {
-             JOptionPane.showMessageDialog(jTextField1, "Sorry you have exceeded the limit to deposit on an atm, please visit a bank and deposit there.");
-         }
-         else {
-             long newBalance = loginPage.foundCustomer.getBalance();
-             newBalance+=entry;
-             loginPage.foundCustomer.setBalance(newBalance);
-             iCustomerRepository.save(loginPage.foundCustomer);
-             JOptionPane.showMessageDialog(jTextField1, "You have deposited " +  input + ", your new balance is " + loginPage.foundCustomer.getBalance());
-         }
+        String input = JOptionPane.showInputDialog("Enter the amount to deposit");
+        long entry = Long.parseLong(input);
+        if (entry < 1) {
+            JOptionPane.showMessageDialog(jTextField1, "Sorry you cannot deposit " + entry + " please enter a valid amount");
+        }
+        if (entry > 50000) {
+            JOptionPane.showMessageDialog(jTextField1, "Sorry you have exceeded the limit to deposit on an atm, please visit a bank and deposit there.");
+        } else {
+            long newBalance = loginPage.foundCustomer.getBalance();
+            newBalance += entry;
+            loginPage.foundCustomer.setBalance(newBalance);
+            iCustomerRepository.save(loginPage.foundCustomer);
+            JOptionPane.showMessageDialog(jTextField1, "You have deposited " + input + ", your new balance is " + loginPage.foundCustomer.getBalance());
+        }
 
     }
 
     private void checkBalanceActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(jTextField1, "Your account balance is: $ " +loginPage.foundCustomer.getBalance());
+        JOptionPane.showMessageDialog(jTextField1, "Your account balance is: $ " + loginPage.foundCustomer.getBalance());
     }
 
     /**
