@@ -72,34 +72,7 @@
 			</exclusions>
 		</dependency>
 
-		<dependency>
-			<groupId>com.projectdummy</groupId>
-			<artifactId>dummy-project</artifactId>
-			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/lib/AbsoluteLayout.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>com.projectdummy</groupId>
-			<artifactId>dummy-project</artifactId>
-			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/lib/FDxSDKPro.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>com.projectdummy</groupId>
-			<artifactId>dummy-project</artifactId>
-			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/lib/FDxSDKPro_jdk1.5_0_21.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>com.projectdummy</groupId>
-			<artifactId>dummy-project</artifactId>
-			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/lib/FDxSDKPro_jdk1.6.0_45.jar</systemPath>
-		</dependency>
+
 	</dependencies>
 
 	<build>

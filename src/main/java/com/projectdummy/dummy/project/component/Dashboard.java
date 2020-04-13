@@ -9,10 +9,8 @@ package com.projectdummy.dummy.project.component;
 import com.projectdummy.dummy.project.entity.Customer;
 import com.projectdummy.dummy.project.repository.ICustomerRepository;
 import com.projectdummy.dummy.project.service.CustomerService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 
 import javax.swing.*;
 
@@ -152,7 +150,7 @@ public class Dashboard extends javax.swing.JFrame {
             newBalance += entry;
             loginPage.foundCustomer.setBalance(newBalance);
             iCustomerRepository.save(loginPage.foundCustomer);
-            JOptionPane.showMessageDialog(jTextField1, "You have deposited " + input + ", your new balance is " + loginPage.foundCustomer.getBalance());
+            JOptionPane.showMessageDialog(jTextField1, "You have deposited $" + input + ", your new balance is $" + loginPage.foundCustomer.getBalance());
         }
 
     }

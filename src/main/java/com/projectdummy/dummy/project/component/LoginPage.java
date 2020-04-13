@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -127,20 +126,23 @@ public class LoginPage extends javax.swing.JFrame {
         for(int i = 0 ; i< prints.size(); i++){
             if(scanner.match(scannedPrint, prints.get(i).getPrintObject())){
                 numberOfMatchedPrints++;
+                System.out.println(numberOfMatchedPrints);
                 prints.remove(i);
                 JOptionPane.showMessageDialog(jScrollPane1, "Fingerprint matched");
                 System.out.println("Match Found: "+ numberOfMatchedPrints);
                 break;
             }
+//            else if (!scanner.match(scannedPrint, prints.get(i).getPrintObject())){
+//                JOptionPane.showMessageDialog(jScrollPane1,"Fingerprint matching failed");
+//                System.out.println("Done here");
+//                break;
+//            }
         }
-//        else{
-//            JOptionPane.showMessageDialog(jScrollPane1,"Fingerprint matching failed");
-//            System.out.println("Done here");
-//        }
+
 
         if(numberOfMatchedPrints == numberOfPrintsToValidate){
             dashboard.setVisible(true);
-            Customer activeAccount = foundCustomer;
+//            Customer activeAccount = foundCustomer;
             return;
         }
 
