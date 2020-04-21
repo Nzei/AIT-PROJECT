@@ -16,7 +16,6 @@ import com.projectdummy.dummy.project.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -29,6 +28,9 @@ public class Registration extends JFrame {
 
     @Autowired
     CustomerService customerService;
+
+    @Autowired
+    WelcomePage welcomePage;
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 
@@ -358,6 +360,7 @@ public class Registration extends JFrame {
         Customer savedCustomer = customerService.saveCustomer(customer);
         JOptionPane.showMessageDialog(jScrollPane2, "Please save your customer ID: "+savedCustomer.getCustomerCode());
         clear();
+        welcomePage.setVisible(true);
     }
 
     private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {

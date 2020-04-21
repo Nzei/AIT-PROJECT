@@ -19,6 +19,10 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
+    public Customer fetchById(long id) {
+        return customerRepository.findById(id).get();
+    }
+
     public Customer saveCustomer(Customer customer) {
         customer.setCustomerCode(generateID(customer));
         customer.setBalance(5000);

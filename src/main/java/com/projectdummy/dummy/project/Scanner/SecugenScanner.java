@@ -274,7 +274,7 @@ public class SecugenScanner implements IScanner {
         System.out.println("Matching Error: " + err);
         System.out.println("Matching score: " + score[0]);
 
-        if (score[0] > 120) {
+        if (score[0] >= 100) {
             return true;
         }
 

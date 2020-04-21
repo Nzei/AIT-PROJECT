@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author uchen
  */
 @Component
@@ -27,13 +26,17 @@ public class LoginPage extends javax.swing.JFrame {
     SecugenScanner scanner;
     int numberOfMatchedPrints = 0;
     int numberOfPrintsToValidate = 4;
-    List<Fingerprint> prints  = new ArrayList<>();
+    List<Fingerprint> prints = new ArrayList<>();
 
     @Autowired
-    CustomerService customerService ;
+    CustomerService customerService;
 
     @Autowired
     Dashboard dashboard;
+
+    @Autowired
+    LoginPage loginPage;
+
     /**
      * Creates new form Login
      */
@@ -117,38 +120,43 @@ public class LoginPage extends javax.swing.JFrame {
     }// </editor-fold>
 
 
-    private void verifyPrints(){
-        JOptionPane.showMessageDialog( jScrollPane1, "Place finger on scanner and Scan fingerprints...");
+    private int verifyPrints() {
+        JOptionPane.showMessageDialog(jScrollPane1, "Place finger on scanner and Scan fingerprints...");
 
         scanner.sleep(1);
-        byte[] scannedPrint  = scanner.captureBytes();
+        byte[] scannedPrint = scanner.captureBytes();
 
-        for(int i = 0 ; i< prints.size(); i++){
-            if(scanner.match(scannedPrint, prints.get(i).getPrintObject())){
+        for (int i = 0; i < prints.size(); i++) {
+
+            if (scanner.match(scannedPrint, prints.get(i).getPrintObject())) {
                 numberOfMatchedPrints++;
                 System.out.println(numberOfMatchedPrints);
                 prints.remove(i);
                 JOptionPane.showMessageDialog(jScrollPane1, "Fingerprint matched");
-                System.out.println("Match Found: "+ numberOfMatchedPrints);
+                System.out.println("Match Found: " + numberOfMatchedPrints);
+                if (numberOfMatchedPrints == numberOfPrintsToValidate) {
+                    dashboard.setVisible(true);
+//            Customer activeAccount = foundCustomer;
+
+                }
+                return 1;
+            }
+            else  {
+                JOptionPane.showMessageDialog(jScrollPane1, "Could not match prints. Please try logging in again");
+                loginPage.setVisible(false);
                 break;
             }
+
 //            else if (!scanner.match(scannedPrint, prints.get(i).getPrintObject())){
 //                JOptionPane.showMessageDialog(jScrollPane1,"Fingerprint matching failed");
 //                System.out.println("Done here");
 //                break;
 //            }
         }
-
-
-        if(numberOfMatchedPrints == numberOfPrintsToValidate){
-            dashboard.setVisible(true);
-//            Customer activeAccount = foundCustomer;
-            return;
-        }
-
+        return 0;
     }
 
-    private void resetPrintsCounts(){
+    private void resetPrintsCounts() {
         numberOfMatchedPrints = 0;
         prints = new ArrayList<>();
     }
@@ -156,19 +164,22 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-            resetPrintsCounts();
-            foundCustomer = customerService.searchCustomerByCode(customerCodeTextField.getText());
-            if(foundCustomer == null){
-                JOptionPane.showMessageDialog(jScrollPane1, "Customer not found");
-                return;
-            }
+        resetPrintsCounts();
+        foundCustomer = customerService.searchCustomerByCode(customerCodeTextField.getText().trim());
+        if (foundCustomer == null) {
+            JOptionPane.showMessageDialog(jScrollPane1, "Customer not found");
+            return;
+        }
 
-            prints = foundCustomer.getFingerprints();
+        prints = foundCustomer.getFingerprints();
 
-            for(int i=0; i<numberOfPrintsToValidate ; i++){
-                verifyPrints();
+        for (int i = 0; i < numberOfPrintsToValidate; i++) {
+            int result = verifyPrints();
+            if(result == 0){
+                break;
             }
         }
+    }
 
     private void customerCodeTextFieldKeyTyped(java.awt.event.KeyEvent evt) {
         // TODO add your handling code here:
