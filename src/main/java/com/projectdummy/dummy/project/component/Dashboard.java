@@ -135,7 +135,7 @@ public class Dashboard extends javax.swing.JFrame {
             newBalance = balance - entry;
             dashboardCustomer.setBalance(newBalance);
             iCustomerRepository.save(dashboardCustomer);
-            JOptionPane.showMessageDialog(jTextField1, "You have successfully withdrawn " + input + ", your new balance is " + dashboardCustomer.getBalance());
+            JOptionPane.showMessageDialog(jTextField1, "You have successfully withdrawn $" + input + ", your new balance is $" + dashboardCustomer.getBalance());
         }
 
     }

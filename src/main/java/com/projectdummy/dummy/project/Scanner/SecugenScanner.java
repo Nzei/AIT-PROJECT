@@ -4,12 +4,9 @@ import SecuGen.FDxSDKPro.jni.*;
 import com.projectdummy.dummy.project.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.color.ColorSpace;
 import java.awt.image.*;
-import java.io.File;
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
@@ -82,9 +79,9 @@ public class SecugenScanner implements IScanner {
         BufferedImage image = null;
         try {
             image = toImage(captureBytes(), deviceInfo.imageWidth, deviceInfo.imageHeight);
-            ImageIO.write(image, "jpg", new File(System.currentTimeMillis() + ".jpg"));
+            //ImageIO.write(image, "jpg", new File(System.currentTimeMillis() + ".jpg"));
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return image;

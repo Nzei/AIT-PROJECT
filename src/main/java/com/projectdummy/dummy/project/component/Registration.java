@@ -361,6 +361,7 @@ public class Registration extends JFrame {
         JOptionPane.showMessageDialog(jScrollPane2, "Please save your customer ID: "+savedCustomer.getCustomerCode());
         clear();
         welcomePage.setVisible(true);
+
     }
 
     private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {
